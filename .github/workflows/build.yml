@@ -1,0 +1,31 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core:
+    # The core, CLI, tests and tools: no third-party dependencies.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - run: cmake -S . -B build -G Ninja -DLEAPEMU_BUILD_GUI=OFF -DLEAPEMU_BUILD_TOOLS=ON
+      - run: cmake --build build
+      - run: ctest --test-dir build --output-on-failure
+
+  gui:
+    # The GUI too: SDL3 is built from source (FetchContent), so its build
+    # dependencies are installed first.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libx11-dev libxext-dev libxrandr-dev libxcursor-dev \
+            libxi-dev libxss-dev libxtst-dev libxfixes-dev libwayland-dev libxkbcommon-dev wayland-protocols \
+            libegl1-mesa-dev libgl1-mesa-dev libasound2-dev libpulse-dev libdbus-1-dev libudev-dev
+      - run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build
+      - run: ctest --test-dir build --output-on-failure

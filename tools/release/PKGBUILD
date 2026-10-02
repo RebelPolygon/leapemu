@@ -1,0 +1,42 @@
+# Packages leapemu's portable Linux release for Arch Linux (and Arch Linux
+# ARM). Put this file next to the release's leapemu-<version>-linux-x86_64.tar.gz
+# (or -arm64.tar.gz) and run: makepkg -si
+#
+# tools/release/build.sh writes this file, with the version and the archives'
+# checksums, next to the archives it builds (.release/PKGBUILD). The programs
+# need only glibc 2.35 or newer; SDL3 is built in and loads the system's X11 or
+# Wayland and audio libraries when it runs.
+pkgname=leapemu-bin
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="An emulator for the LeapFrog Leapster"
+arch=('x86_64' 'aarch64')
+license=('GPL-3.0-or-later')
+depends=('glibc')
+optdepends=('wayland: Wayland windows'
+            'libdecor: window decorations on Wayland'
+            'libx11: X11 windows'
+            'libxkbcommon: keyboard input on Wayland'
+            'libpulse: sound through PulseAudio or PipeWire'
+            'pipewire: sound through PipeWire'
+            'alsa-lib: sound through ALSA')
+provides=('leapemu')
+conflicts=('leapemu')
+options=('!strip' '!debug')
+# (The release tarballs name the 64-bit ARM build arm64.)
+source_x86_64=("leapemu-$pkgver-linux-x86_64.tar.gz")
+source_aarch64=("leapemu-$pkgver-linux-arm64.tar.gz")
+sha256sums_x86_64=('SKIP')
+sha256sums_aarch64=('SKIP')
+
+package() {
+  local dir=leapemu-$pkgver-linux-x86_64
+  [ "$CARCH" = aarch64 ] && dir=leapemu-$pkgver-linux-arm64
+  cd "$dir"
+  install -Dm755 leapemu leapemu-cli -t "$pkgdir/usr/bin/"
+  install -Dm644 leapemu.desktop -t "$pkgdir/usr/share/applications/"
+  install -Dm644 leapemu.svg -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+  install -Dm644 README.md CHANGELOG.md CONTRIBUTING.md THIRD-PARTY.md -t "$pkgdir/usr/share/doc/leapemu/"
+  cp -r docs res "$pkgdir/usr/share/doc/leapemu/"  # (the README's links and image)
+  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}

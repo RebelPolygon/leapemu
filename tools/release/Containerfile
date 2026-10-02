@@ -1,0 +1,22 @@
+# Build environment for the portable Linux releases (see build.sh): Ubuntu
+# 22.04 (glibc 2.35), so the binaries run on most distributions from 2022 on,
+# with the development files SDL3 needs for x86-64 and, cross-compiled, arm64.
+# SDL3 itself is built from source and linked statically; it loads X11,
+# Wayland, ALSA, PulseAudio etc. at run time, whichever the system has.
+FROM docker.io/library/ubuntu:22.04
+ARG SDL_DEPS="libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxss-dev libxtst-dev \
+  libxfixes-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libgl1-mesa-dev libgles2-mesa-dev \
+  libasound2-dev libpulse-dev libpipewire-0.3-dev libdecor-0-dev libdbus-1-dev libudev-dev libdrm-dev libgbm-dev"
+# (arm64 packages come from ports.ubuntu.com, the others from the usual archive.)
+RUN sed -i 's/^deb http/deb [arch=amd64] http/' /etc/apt/sources.list && \
+    for s in jammy jammy-updates jammy-security; do \
+      echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports $s main universe" >> /etc/apt/sources.list; done && \
+    dpkg --add-architecture arm64 && apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential \
+      g++-aarch64-linux-gnu gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu ninja-build git \
+      ca-certificates python3-pip pkg-config file zip wayland-protocols libwayland-bin $SDL_DEPS && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      $(for p in $SDL_DEPS; do echo $p:arm64; done) && \
+    rm -rf /var/lib/apt/lists/*
+# (Ubuntu 22.04's CMake is too old for leapemu.)
+RUN pip3 install --no-cache-dir "cmake==3.31.*"

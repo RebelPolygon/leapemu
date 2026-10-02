@@ -1,0 +1,91 @@
+# leapemu's game database: one row per known image (by CRC-32 of the file's ROM data).
+# Columns: crc32, name, region, type (Cartridge / Prototype / Download), compatibility
+# (In-game / Menus / Intro / Broken / Untested), flags (unsigned: a dump with damaged
+# bytes that boots only with the unsigned patches, which leapemu then applies itself;
+# stub-services: a Leapster 2 download using Leapster 2 services, which leapemu
+# then supplies, see Machine::stub_missing_services; dev-upload: a development
+# upload whose block headers leapemu removes on loading (it finds those itself:
+# the flag documents it); comma-separated),
+# internal title (from the ROM header, for reference), notes.
+# res/make_game_db.py turns it into src/gui/game_db.h and the tables in docs/compatibility.md.
+db36283f	1st Grade	USA	Cartridge	In-game		Leapster First Grade Title	
+af063ba4	Animal Genius	USA	Cartridge	In-game		Scholastic Animal Genius	
+5d4f7cd0	Bratz World - The Jet Set	USA	Cartridge	In-game		Bratz World	
+c7b62602	Cars	Germany	Cartridge	In-game		CARS-German	
+d4a7e5d4	Cars	USA	Cartridge	In-game		CARS	
+beca3909	Cars - Supercharged	USA	Cartridge	In-game		CARS2	
+0134af49	Clifford - The Big Red Dog - Reading	USA	Cartridge	In-game		Clifford Reading	
+979346d5	Cosmic Math - Arcade-Style Learning!	USA	Cartridge	In-game		CosmicMath	
+9f08d02a	Creature Create	USA	Cartridge	In-game		Leapster Creativity 07	
+71062cd7	Demo - Herbst 2004 II	Germany	Cartridge	In-game		German POP	
+822ca3da	Digging for Dinosaurs	USA	Cartridge	In-game		Scholastic Dinosaur Adventure	
+8a605512	Disney Fairies	USA	Cartridge	In-game		Disney Fairies	
+5ccb2ad3	Disney Princess	USA	Cartridge	In-game		Disney Princess	
+2465f01d	Disney Princess - Worlds of Enchantment	USA	Cartridge	In-game		DPR - Disney Princess	
+bb6d5375	Disney Prinzessinnen - Zauberhaftes Lernen	Germany	Cartridge	In-game		Disney Princesses German	
+242907d4	Dora - Retter der Wildnis	Germany	Cartridge	In-game		Dora Retter der Wildnis	
+71778536	Dora the Explorer - Camping Adventure	USA	Cartridge	In-game		Dora for Leapster2	
+6a5e20ba	Findet Nemo	Germany	Cartridge	In-game		Finding Nemo GE	
+1895f946	Finding Nemo	USA	Cartridge	In-game		Finding Nemo	
+e62d1684	Foster's Home for Imaginary Friends	USA	Cartridge	In-game		Foster's Home for Imaginary Friends	
+05b608f0	Get Puzzled!	USA	Cartridge	In-game		PUZ - Puzzle Power	
+ebbf83a0	Go Diego Go! - Animal Rescuer	USA	Cartridge	In-game		Diego_L2	
+6fd44f1a	Grundschule 1	Germany	Cartridge	In-game		Leapster German First Grade Title	
+96d30f93	Grundschule 2 - Musik in Gefahr	Germany	Cartridge	In-game		Leapster Grade 2 German	
+7c716016	I Spy - Treasure Hunt	USA	Cartridge	In-game		Scholastic iSpy Treasure Hunt	
+db262164	Kindergarten	USA	Cartridge	In-game		Leapster Kindergarten Title	
+e1f505e7	Lernen mit Leap	Germany	Cartridge	In-game		Included Title	
+9d1c2f35	Letter Factory	USA	Cartridge	In-game		The Letter Factory	
+a9c75d90	Madagascar	USA	Cartridge	In-game		Madagascar	
+fe8bd3fd	Math Baseball	USA	Cartridge	In-game		Math Baseball	
+e58eac06	Mit Bruno Bleistift lernst du Malen & Schreiben	Germany	Cartridge	In-game		German >> Mr. Pencils Learn to Draw and Write.	
+dbb767cc	Mr. Pencil's Learn to Draw & Write	USA	Cartridge	In-game		Mr. Pencils Learn to Draw and Write.	
+2fc77c9d	My Amusement Park	USA	Cartridge	In-game		SAP	
+01f12ce7	Numbers on the Run	USA	Cartridge	In-game		Counting on Zero	
+3c428a13	Pet Pals	USA	Cartridge	In-game		Pet Pals - Animal Nurturing	
+df729fe7	Ratatouille	Germany	Cartridge	In-game		German Ratatouille	
+d0c4de47	Ratatouille	USA	Cartridge	In-game		Ratatouille	
+2c6e623e	Reading with Phonics - Mole's Huge Nose	USA	Cartridge	In-game		Phonics2	
+43bb0b63	Schoolhouse Rock - America Rock	USA	Cartridge	In-game	unsigned	America Rock	
+53c9d9b2	Schoolhouse Rock - Grammar Rock	USA	Cartridge	In-game		Grammar Rock	
+a9d2cdbd	Sonic X	USA	Cartridge	In-game		Sonic	
+9dc2e5f6	Spider-Man - Schachmatt den Schildersaboteuren!	Germany	Cartridge	In-game		German SPIDER-MAN	
+0ef61cbb	Spider-Man - The Case Of The Sinister Speller	USA	Cartridge	In-game		SPIDER-MAN V.1.0	
+8761fc61	Spongebob Schwammkopf - Zeitreise durch das Wurmloch	Germany	Cartridge	In-game		SpongeBob Arcade German	
+d11e7c30	Spongebob Schwammkopf hat alles im Griff	Germany	Cartridge	In-game		SpongeBob SquarePants	
+0f2ad725	Spongebob Squarepants - Saves the Day	USA	Cartridge	In-game		SpongeBob SquarePants	
+27000674	Star Wars - Jedi Math	USA	Cartridge	In-game		starWar	
+ce9ce136	Tangled	USA	Cartridge	In-game		Rapunzel_Leapster	
+de5fb26e	The Backyardigans	USA	Cartridge	In-game		Backyardigans	
+a0a362aa	The Batman - Multipliziere, Dividiere und Regiere	Germany	Cartridge	In-game		The Batman, German	
+7c934681	The Batman - Strength in Numbers	USA	Cartridge	In-game		The Batman 2	
+d8ac1a09	The Disney-Pixar Collection	USA	Cartridge	In-game		PixarPals_Leapster	
+076ad299	The Penguins of Madagascar	USA	Cartridge	In-game		Penguins_Leapster	
+5303d366	Thomas & Friends - Calling All Engines!	USA	Cartridge	In-game		Thomas and Friends Calling All Engines	
+a72c61fd	Toy Story 3	USA	Cartridge	In-game		Toy Story 3	
+1e2a5031	Up	USA	Cartridge	In-game		Disney Pixar "Up"	
+4c5e775e	Vorschule	Germany	Cartridge	In-game		Leapster German Kindergarten Title	
+ee2c39ea	Wall-E	Germany	Cartridge	In-game		Leapster WALL-E German	
+75164c8e	Weltraum-Mathe - Lernen im Arcade-Stil!	Germany	Cartridge	In-game		CosmicMath, German	
+a707de61	Woerterjaeger - Lernen im Arcade-Stil!	Germany	Cartridge	In-game		Word Chasers, German	
+67bd4a6a	Wolverine and the X-Men	USA	Cartridge	In-game		Wolverine	
+334ab5d0	Zahlenjaeger - Lernen im Arcade-Stil!	Germany	Cartridge	In-game		Number Raiders, German	
+3ba2351d	Cars (prototype, July 26 2005)	USA	Prototype	In-game		CARS	
+175d575f	Cars Supercharged (prototype, January 10 2007)	USA	Prototype	In-game	dev-upload	CARS2	
+28b9d48b	Go Diego Go Animal Rescuer (prototype, April 5 2007)	USA	Prototype	In-game		Diego	
+791e7f08	Go Diego Go Animal Rescuer (prototype, March 15 2007)	USA	Prototype	In-game	dev-upload	Diego	
+fe8b39f9	Pet Pals (prototype, October 17 2006)	USA	Prototype	In-game	dev-upload	PET - Leapster Pet Pals	
+2c247582	Wall-E (prototype, December 20 2007)	USA	Prototype	In-game		Leapster WALL-E	
+b0f756d3	Chicken Coop	USA	Download	In-game	stub-services	bCCD	
+c1cccd8c	Disney Fairies Demo	USA	Download	In-game		Disney Fairies - Demo	
+6efa1565	Disney Pixar UP Demo	USA	Download	In-game		Disney Pixar "Up" Downloadable	
+7c630b95	Disney The Princess and the Frog Demo	USA	Download	In-game		Princess and the Frog	
+bd207967	Disney-Pixar Toy Story 3 Mini-Game	USA	Download	In-game		Toy Story 3 Demo	
+e0410d99	Dragons to the Rescue	USA	Download	In-game		bDTR Download	
+08061079	Letterpillar	USA	Download	In-game	stub-services	LetterPillar UK SD	
+f78d3848	Ni Hao, Kai-lan Demo	USA	Download	In-game		Ni Hao Kai Lan Downloadable	
+60f09e5b	Number Raiders	USA	Download	In-game	stub-services	Number Raiders UK SD	
+bec0f4b4	Rabbit River	USA	Download	In-game	stub-services	RR2	
+d0a37eb2	Shape Shop	USA	Download	In-game	stub-services	bSS2	
+a609e614	Star Wars: Jedi Reading Demo	USA	Download	In-game		Star Wars Jedi Reading Downloadable	
+614539e7	Wolverine & the X-Men Demo	USA	Download	In-game		Wolverine - Demo	

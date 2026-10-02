@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=leapemu
+GenericName=Leapster Emulator
+Comment=Play LeapFrog Leapster games
+Exec=leapemu %f
+Icon=leapemu
+Terminal=false
+Categories=Game;Emulator;
+MimeType=application/zip;

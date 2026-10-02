@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- leapemu icon: a frog's head, flat shapes only: the head with its eye
+       bumps, and the pale jaw below a curved mouth line. Plain shapes (no
+       clipping), so every SVG renderer draws it the same. -->
+  <g fill="#3fae52">
+    <rect x="18" y="98" width="220" height="128" rx="64"/>
+    <circle cx="78" cy="92" r="46"/>
+    <circle cx="178" cy="92" r="46"/>
+  </g>
+  <path fill="#f1e7a6" d="M18.88 172.56 Q128.00 207.44 237.12 172.56 A64 64 0 0 1 174 226 H82 A64 64 0 0 1 18.88 172.56 Z"/>
+</svg>

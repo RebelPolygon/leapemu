@@ -1,0 +1,19 @@
+diff --git a/src/devices/cpu/arcompact/arcompact.cpp b/src/devices/cpu/arcompact/arcompact.cpp
+index 2ec98cc0..aefb2e9c 100644
+--- a/src/devices/cpu/arcompact/arcompact.cpp
++++ b/src/devices/cpu/arcompact/arcompact.cpp
+@@ -272,7 +272,13 @@ void arcompact_device::device_start()
+ 
+ 	for (int i = 0x100; i < 0x140; i++)
+ 	{
+-		state_add(i, arcompact_disassembler::regnames[i - 0x100], m_debugger_temp).callimport().callexport().formatstr("%08X");
++		// ORACLE PATCH: names like "r60(LP_COUNT)" cannot be referenced in debugger
++		// expressions (the '(' is parsed as a function call), so strip the "(...)" suffix
++		// from the state symbol: r0..r25, r26_GP..r31_BLINK, r32..r63 (r60 = LP_COUNT).
++		std::string name(arcompact_disassembler::regnames[i - 0x100]);
++		if (auto paren = name.find('('); paren != std::string::npos)
++			name.resize(paren);
++		state_add(i, name.c_str(), m_debugger_temp).callimport().callexport().formatstr("%08X");
+ 	}
+ 
+ 	m_pending_ints = 0;
